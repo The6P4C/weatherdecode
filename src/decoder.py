@@ -3,8 +3,8 @@ from packet import decode_packet
 from pwm import PWMDecoder
 
 class Decoder:
-	def __init__(self):
-		self.pwm_decoder = PWMDecoder()
+	def __init__(self, print_on_times=False):
+		self.pwm_decoder = PWMDecoder(print_on_times)
 		self.bitstream_decoder = BitstreamDecoder()
 
 	def add_samples(self, samples):

@@ -35,9 +35,10 @@ def main():
 	parser = argparse.ArgumentParser(description='Decode packets from the Maxkon 433MHz weather station.')
 	parser.add_argument('--file', '-f', help='Decode packets from a WAV file')
 	parser.add_argument('--show-raw', '-r', action='store_true', help='Show raw packet data in hexidecimal')
+	parser.add_argument('--print-on-times', '-t', action='store_true', help='Show the on times as reported by the PWMDecoder')
 	args = parser.parse_args()
 
-	decoder = Decoder()
+	decoder = Decoder(args.print_on_times)
 
 	if (args.file):
 		# Suppress WAV file warnings
@@ -55,7 +56,7 @@ def main():
 			for packet in packets:
 				print_packet(packet, args.show_raw)
 
-		audioIn = AudioIn(audio_samples_ready)
+		audio_in = AudioIn(audio_samples_ready)
 
 		while True:
 			time.sleep(0.1)
