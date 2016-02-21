@@ -40,5 +40,6 @@ def decode_packet(packet):
 			'temperature': 0.1 * packet[3] + 11.2,
 			'humidity': packet[4],
 			'wind_direction': COMPASS_DIRECTIONS[packet[9]],
+			'raw_data': packet,
 			'crc_fail': False
 		}
