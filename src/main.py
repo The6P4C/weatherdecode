@@ -15,7 +15,7 @@ def print_packet(packet):
 	print('Recieved: %s' % (now.strftime('%Y-%m-%d %H:%M:%S')))
 
 	if decoded_packet['crc_fail']:
-		print("CRC Fail", flush=True)
+		print('CRC Fail', flush=True)
 	else:
 		temperature = decoded_packet['temperature']
 		humidity = decoded_packet['humidity']

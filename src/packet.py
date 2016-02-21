@@ -19,6 +19,7 @@ def crc8(vals):
 	]
 
 	crc = 0
+
 	for val in vals:
 		data = val ^ crc
 		crc = lut[data]
@@ -27,6 +28,7 @@ def crc8(vals):
 
 def decode_packet(packet):
 	crc_fail = packet[10] != crc8(packet[1:10])
+	
 	if crc_fail:
 		return {
 			'crc_fail': True
