@@ -1,5 +1,5 @@
 class PWMDecoder:
-	def __init__(self, onTriggerLevel=0.05, lengths0 = (61, 65), lengths1 = (19, 24)):
+	def __init__(self, onTriggerLevel=0.05, lengths0=(61, 68), lengths1=(19, 24)):
 		self.isOn = False
 		self.onTime = 0
 
