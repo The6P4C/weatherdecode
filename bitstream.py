@@ -2,7 +2,7 @@ import collections
 
 def bitstream_to_bytes(l):
 	if len(l) % 8 != 0:
-		assert ValueError("List is not of length divisible by 8 (cannot be made into bytes)")
+		assert ValueError('List is not of length divisible by 8 (cannot be made into bytes)')
 
 	output = []
 	# from [... * 16] to [[... * 8], [... * 8]]
