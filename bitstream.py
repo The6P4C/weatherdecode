@@ -5,7 +5,7 @@ def bitstream_to_bytes(l):
 		assert ValueError('List is not of length divisible by 8 (cannot be made into bytes)')
 
 	output = []
-	# from [... * 16] to [[... * 8], [... * 8]]
+	# From [... * 16] to [[... * 8], [... * 8]]
 	bytes_bits = [l[i:i + 8] for i in range(0, len(l), 8)]
 	for byte_bits in bytes_bits:
 		val = 0
