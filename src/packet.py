@@ -26,10 +26,10 @@ def crc8(vals):
 	return crc
 
 def decode_packet(packet):
-	crcFail = packet[10] != crc8(packet[1:10])
-	if crcFail:
+	crc_fail = packet[10] != crc8(packet[1:10])
+	if crc_fail:
 		return {
-			'crcFail': True
+			'crc_fail': True
 		}
 	else:
 		COMPASS_DIRECTIONS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
@@ -38,5 +38,5 @@ def decode_packet(packet):
 			'temperature': 0.1 * packet[3] + 11.2,
 			'humidity': packet[4],
 			'wind_direction': COMPASS_DIRECTIONS[packet[9]],
-			'crcFail': False
+			'crc_fail': False
 		}
