@@ -12,8 +12,8 @@ def main():
 	parser.add_argument('--file')
 	args = parser.parse_args()
 
-	pwmDecoder = PWMDecoder()
-	bitstreamDecoder = BitstreamDecoder()
+	pwm_decoder = PWMDecoder()
+	bitstream_decoder = BitstreamDecoder()
 
 	if (args.file):
 		# Suppress WAV file warnings
@@ -21,15 +21,15 @@ def main():
 		sampFreq, samples = wavfile.read(args.file)
 		warnings.filterwarnings('default')
 		
-		bitstream = pwmDecoder.add_samples(samples.tolist())
-		packets = bitstreamDecoder.add_bits(bitstream)
+		bitstream = pwm_decoder.add_samples(samples.tolist())
+		packets = bitstream_decoder.add_bits(bitstream)
 		
 		for packet in packets:
 			print(decode_packet(packet))
 	else:
 		def audio_samples_ready(samples):
-			bitstream = pwmDecoder.add_samples(samples)
-			packets = bitstreamDecoder.add_bits(bitstream)
+			bitstream = pwm_decoder.add_samples(samples)
+			packets = bitstream_decoder.add_bits(bitstream)
 
 			for packet in packets:
 				print(decode_packet(packet), flush=True)

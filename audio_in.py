@@ -18,7 +18,13 @@ class AudioIn:
 
 		self.p = pyaudio.PyAudio()
 
-		self.stream = self.p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, stream_callback=pa_callback)
+		self.stream = self.p.open(
+			format=FORMAT,
+			channels=CHANNELS,
+			rate=RATE,
+			input=True,
+			stream_callback=pa_callback
+		)
 
 		self.stream.start_stream()
 
