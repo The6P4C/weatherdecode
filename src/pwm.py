@@ -1,8 +1,9 @@
 class PWMDecoder:
-	def __init__(self, lengths0 = (61, 65), lengths1 = (19, 24)):
+	def __init__(self, onTriggerLevel=0.05, lengths0 = (61, 65), lengths1 = (19, 24)):
 		self.isOn = False
 		self.onTime = 0
 
+		self.onTriggerLevel = onTriggerLevel
 		self.lengths0 = lengths0
 		self.lengths1 = lengths1
 
@@ -17,7 +18,7 @@ class PWMDecoder:
 	def add_samples(self, samples):
 		bitstream = []
 		for sample in samples:
-			if sample > 0.05:
+			if sample > self.onTriggerLevel:
 				if self.isOn:
 					self.onTime += 1
 				else:
