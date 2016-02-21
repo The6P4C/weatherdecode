@@ -27,7 +27,8 @@ def print_packet(packet, show_raw):
 		print(u'\tTemperature: %d deg C' % (temperature))
 		print('\tHumidity: %d%%' % (humidity))
 		print('\tWind Direction: %s' % (wind_direction))
-		print('\tRaw Data: %s' % (raw_data))
+		if show_raw:
+			print('\tRaw Data: %s' % (raw_data))
 		print('', flush=True)
 
 def main():
