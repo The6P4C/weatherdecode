@@ -6,7 +6,7 @@ from scipy.io import wavfile
 import warnings
 import time
 
-def print_packet(packet, show_raw):	
+def print_packet(packet, show_raw):
 	now = datetime.datetime.now()
 	print('Recieved: %s' % (now.strftime('%Y-%m-%d %H:%M:%S')))
 
@@ -24,7 +24,7 @@ def print_packet(packet, show_raw):
 
 			raw_data += paddedHexVal + ' '
 
-		print(u'\tTemperature: %d deg C' % (temperature))
+		print(u'\tTemperature: %.1f deg C' % (temperature))
 		print('\tHumidity: %d%%' % (humidity))
 		print('\tWind Direction: %s' % (wind_direction))
 		if show_raw:
