@@ -26,6 +26,16 @@ def crc8(vals):
 
 	return crc
 
+def compass_direction_of(direction):
+	COMPASS_DIRECTIONS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
+
+	if direction == 0x90:
+		return 'No wind'
+	elif direction < len(COMPASS_DIRECTIONS):
+		return COMPASS_DIRECTIONS[direction]
+	else:
+		return 'Unknown direction'
+
 def decode_packet(packet):
 	crc_fail = packet[10] != crc8(packet[1:10])
 	
@@ -34,12 +44,10 @@ def decode_packet(packet):
 			'crc_fail': True
 		}
 	else:
-		COMPASS_DIRECTIONS = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
-
 		return {
 			'temperature': 0.1 * packet[3] + 11.2,
 			'humidity': packet[4],
-			'wind_direction': COMPASS_DIRECTIONS[packet[9]],
+			'wind_direction': compass_direction_of(packet[9]),
 			'raw_data': packet,
 			'crc_fail': False
 		}
